@@ -1,0 +1,48 @@
+RenderPages Plugin for ScrewTurn Wiki
+-------------------------------------
+
+Facilitates the creation of a single html page presentable for printing based on input parameters to specify Categories to INCLUDE *or* Pages to EXCLUDE. 
+
+* CSS is used for formatting and can be viewed/modified via the Plugin/Provider's Configuration Data in the Admin section.
+* The generated markup is ready for consumption by Prince XML (http://www.princexml.com) for truly book-worthy printing capabilities including 
+  page numbers properly referenced in the table of contents and at the bottom of pages (all configurable via CSS).
+
+--Tag Description--
+{RenderPages X=NAME:NAME:etc} 
+
+Where X= 
+'P' - Indicates Page mode (can actually be any word that starts with p/P) 
+'C' - Indicates Category mode (can actually be any word that starts with c/C) 
+
+Where NAME= 
+Category Name to INCLUDE   *Use #ALL# to include all categories
+*OR* 
+Page Name to EXCLUDE 
+
+
+--Example Tags--
+{RenderPages c=My First Category To Print:My Second Category To Print} - will print ONLY the Categories specified 
+{RenderPages c=#ALL#} - print all categories
+{RenderPages p=Sandbox:Book Page Name:MainPage} - will print ALL Pages EXCEPT those specified 
+
+
+Notes 
+1) Embedded {TOC}'s are removed as they are too easily confused. 
+2) The created Table of Contents listing has quick links to jump to the article text. 
+3) The actual article titles have the original wiki page url for links. 
+4) Under Category Mode - the Table of Contents will be grouped by Category if more than 1 Category is specified. 
+5) "Should" support multiple RenderPages tags on a single page (but I havent tested) 
+
+
+Usage Example: 
+1) Create a new wiki page 
+2) Add whatever text you would like to appear on the cover of the document. (Remember the Page Title will be in H1 text at the top) 
+3) Add your RenderPages tag and Save. 
+
+*For a truly printable PDF, download and install Prince XML from http://www.princexml.com.
+One installed, navigate to Prince's command-line engine in the installation folder:
+C:\Program Files\Prince\Engine\bin\prince.exe
+Run prince.exe with the following parameters:
+prince.exe --javascript --input=html --baseurl=http://www.mywikisite.com http://www.mywikisite.com/MyRenderPagesPage.ashx -o output.pdf
+
+The output.pdf file will be generated complete with a real table of contents and page numbers.
