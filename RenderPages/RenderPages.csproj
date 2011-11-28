@@ -48,12 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="changelog.txt" />
     <Content Include="Libraries\ScrewTurn.Wiki.PluginFramework.dll" />
-    <None Include="LICENSE" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
