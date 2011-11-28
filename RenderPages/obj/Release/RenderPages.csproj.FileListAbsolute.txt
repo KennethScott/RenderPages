@@ -1,0 +1,6 @@
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\bin\Release\RenderPages.dll
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\bin\Release\RenderPages.pdb
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\bin\Release\ScrewTurn.Wiki.PluginFramework.dll
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\obj\Release\ResolveAssemblyReference.cache
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\obj\Release\RenderPages.dll
+C:\Users\kenneth\Documents\Visual Studio 2010\Projects\RenderPages\RenderPages\obj\Release\RenderPages.pdb
