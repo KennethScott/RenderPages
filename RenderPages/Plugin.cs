@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-using ScrewTurn.Wiki.PluginFramework;
 using System.Collections;
 using System.Text;
-using System.Reflection;
+using System.Text.RegularExpressions;
+using ScrewTurn.Wiki.PluginFramework;
 
 namespace RenderPages
 {    
@@ -48,16 +47,16 @@ namespace RenderPages
                     al.AddRange(m.Groups[2].Value.Split(':'));
 
                     // fix per lum for v3 compatibility - assume current namespace
-                    string nspace, pname = String.Empty;
-                    NameTools.ExpandFullName(context.Page.FullName, out nspace, out pname);
-                    NamespaceInfo nsiCurrentNamespace = host.FindNamespace(nspace);
+                    string currentNamespace, currentPagename = String.Empty;
+                    NameTools.ExpandFullName(context.Page.FullName, out currentNamespace, out currentPagename);
+                    NamespaceInfo nsiCurrentNamespace = host.FindNamespace(currentNamespace);
 
                     StringBuilder sbAllPages = new StringBuilder();
                     StringBuilder sbTOC = new StringBuilder();
 
                     if (!String.IsNullOrEmpty(cssFromConfig))
                         sbTOC.AppendFormat("<style type='text/css'>{0}</style>", cssFromConfig);
-                    
+
                     sbTOC.Append("<div class='toc'>");
                     sbTOC.Append("<h2>Table of Contents</h2>");
                     sbTOC.Append("<div id='tocItems'>");
@@ -69,8 +68,9 @@ namespace RenderPages
                         // exclude pages 
                         case "p":
                             foreach (PageInfo Pg in host.GetPages(nsiCurrentNamespace)) 
-                            {
-                                if (!al.Contains(Pg.FullName))
+                            {   
+                                // ensure current RenderPages page isn't included
+                                if (!al.Contains(Pg.FullName) && Pg.FullName != context.Page.FullName)
                                 {                                    
                                     sbTOC.Append(formatTocItem(pageNum, Pg.FullName, false));
                                     sbAllPages.Append(formatPage(pageNum, formatPageHeader(pageNum, Pg.FullName), host.GetFormattedContent(Pg)));
@@ -91,11 +91,15 @@ namespace RenderPages
                                     // fix per jantony to ensure alpha sorting of pages
                                     Array.Sort(ci.Pages);
                                     foreach (string strPage in ci.Pages)
-                                    {                                        
-                                        PageInfo Pg = host.FindPage(strPage);
-                                        sbTOC.Append(formatTocItem(pageNum, Pg.FullName, false));
-                                        sbAllPages.Append(formatPage(pageNum, formatPageHeader(pageNum, Pg.FullName), host.GetFormattedContent(Pg)));
-                                        pageNum++;
+                                    {
+                                        // ensure current RenderPages page isn't included
+                                        if (strPage != context.Page.FullName)
+                                        {
+                                            PageInfo Pg = host.FindPage(strPage);                                            
+                                            sbTOC.Append(formatTocItem(pageNum, Pg.FullName, false));
+                                            sbAllPages.Append(formatPage(pageNum, formatPageHeader(pageNum, Pg.FullName), host.GetFormattedContent(Pg)));
+                                            pageNum++;
+                                        }
                                     }
 
                                     sbTOC.Append("</div>");

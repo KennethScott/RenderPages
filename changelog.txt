@@ -1,3 +1,7 @@
+3.1.0.1
+-------
+* Automatically exclude current RenderPages page when processing pages
+
 3.1.0.0
 -------
 * Initial release of ScrewTurn 3.0-compatible plugin with PrinceXML support.  
