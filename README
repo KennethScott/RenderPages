@@ -23,7 +23,7 @@ Page Name to EXCLUDE
 --Example Tags--
 {RenderPages c=My First Category To Print:My Second Category To Print} - will print ONLY the Categories specified 
 {RenderPages c=#ALL#} - print all categories
-{RenderPages p=Sandbox:Book Page Name:MainPage} - will print ALL Pages EXCEPT those specified 
+{RenderPages p=Sandbox:MainPage} - will print ALL Pages EXCEPT those specified 
 
 
 Notes 
