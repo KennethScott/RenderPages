@@ -9,7 +9,7 @@ namespace RenderPages
     public class Plugin : IFormatterProviderV30 
     {
         private static readonly ComponentInformation info = new ComponentInformation("RenderPages Plugin", "Kenneth Scott",
-                                        "3.1.0.0", "https://github.com/kennethscott/RenderPages", "");
+                                        "3.1.0.1", "https://github.com/kennethscott/RenderPages", "");
         private static readonly string defaultCss =
             "@page { prince-shrink-to-fit: auto; size: 8.5in 11in; margin: .75in .75in .75in 1in; } " +
             "@page page { @bottom-center { content: counter(page); } } " +
