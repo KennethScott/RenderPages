@@ -9,7 +9,7 @@ namespace RenderPages
     public class Plugin : IFormatterProviderV30 
     {
         private static readonly ComponentInformation info = new ComponentInformation("RenderPages Plugin", "Kenneth Scott",
-                                        "3.1.0.1", "https://github.com/kennethscott/RenderPages", "");
+                                        "3.1.0.2", "https://github.com/kennethscott/RenderPages", "");
         private static readonly string defaultCss =
             "@page { prince-shrink-to-fit: auto; size: 8.5in 11in; margin: .75in .75in .75in 1in; } " +
             "@page page { @bottom-center { content: counter(page); } } " +
@@ -171,8 +171,13 @@ namespace RenderPages
         }
         private string formatPage(int pageNum, string pageHeader, string pageContent) 
         {
-            return String.Format("<div class='page{0}'>{1}{2}</div>", pageNum==0 ? " first" : String.Empty,
-                                    pageHeader, pageContent.Replace("{TOC}", String.Empty));
+            // remove STW's TOC
+            pageContent = Regex.Replace(pageContent, "<table id=\"TocContainerTable\">.+</table>", String.Empty, RegexOptions.Compiled);
+            // remove section Edit links
+            pageContent = Regex.Replace(pageContent, "<a href=\"Edit\\.aspx\\?Page=.*?\" class=\"editsectionlink\">%%%%EditSectionPlaceHolder%%%%</a>", String.Empty, RegexOptions.Compiled);
+            // remove section header anchors
+            pageContent = Regex.Replace(pageContent, "<a class=\"headeranchor\".*?title=\"%%%%SectionLinkTextPlaceHolder%%%%\">.*?</a>", String.Empty, RegexOptions.Compiled);
+            return String.Format("<div class='page{0}'>{1}{2}</div>", pageNum==0 ? " first" : String.Empty, pageHeader, pageContent);
         }
         private string formatCategoryHeader(int pageNum, string category)
         {

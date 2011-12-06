@@ -1,3 +1,7 @@
+3.1.0.2
+-------
+* Remove {TOC}'s and the related section edit links 
+
 3.1.0.1
 -------
 * Automatically exclude current RenderPages page when processing pages

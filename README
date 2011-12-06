@@ -27,7 +27,7 @@ Page Name to EXCLUDE
 
 
 Notes 
-1) Embedded {TOC}'s are removed as they are too easily confused. 
+1) Embedded {TOC}'s and the related section Edit links are removed. 
 2) The created Table of Contents listing has quick links to jump to the article text. 
 3) The actual article titles have the original wiki page url for links. 
 4) Under Category Mode - the Table of Contents will be grouped by Category if more than 1 Category is specified. 
